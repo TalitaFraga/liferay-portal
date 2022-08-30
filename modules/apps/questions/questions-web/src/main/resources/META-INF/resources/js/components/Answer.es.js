@@ -36,6 +36,8 @@ import UserRow from './UserRow.es';
 
 export default withRouter(
 	({
+		page,
+		pageSize,
 		answer,
 		answerChange,
 		canMarkAsAnswer,
@@ -310,6 +312,8 @@ export default withRouter(
 				<div className="row">
 					<div className="col-md-9 offset-md-1">
 						<Comments
+							page={page}
+							pageSize={pageSize}
 							comments={comments}
 							commentsChange={_commentsChange}
 							editable={editable}
