@@ -51,6 +51,7 @@ import {
 	markAsAnswerMessageBoardMessageQuery,
 	subscribeQuery,
 	unsubscribeQuery,
+	getUserActivityQuery,
 } from '../../utils/client.es';
 import {ALL_SECTIONS_ID} from '../../utils/contants.es';
 import lang from '../../utils/lang.es';
@@ -128,8 +129,7 @@ export default withRouter(
 							);
 							setError(errorObject);
 							setLoading(false);
-						}
-						else {
+						} else {
 							setQuestion(messageBoardThreadByFriendlyUrlPath);
 							setLoading(false);
 						}
@@ -219,8 +219,14 @@ export default withRouter(
 				await onSubscription();
 
 				fetchMessages();
-			}
-			catch (error) {}
+
+				deleteCacheKey(getUserActivityQuery, {
+					filter: `creatorId eq ${context.userId}`,
+					page,
+					pageSize,
+					siteKey: context.siteKey,
+				});
+			} catch (error) {}
 		};
 
 		const deleteAnswer = useCallback(
@@ -538,6 +544,8 @@ export default withRouter(
 									>
 										{(answer) => (
 											<Answer
+												page={page}
+												pageSize={pageSize}
 												answer={answer}
 												answerChange={answerChange}
 												canMarkAsAnswer={
