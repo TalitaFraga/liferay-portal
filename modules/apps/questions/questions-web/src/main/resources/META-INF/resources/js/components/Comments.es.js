@@ -27,8 +27,6 @@ import SubscritionCheckbox from './SubscribeCheckbox.es';
 
 export default withRouter(
 	({
-		page,
-		pageSize,
 		comments,
 		commentsChange,
 		editable = true,
@@ -37,6 +35,8 @@ export default withRouter(
 			params: {questionId, sectionTitle},
 		},
 		onSubscription,
+		page,
+		pageSize,
 		question,
 		showNewComment,
 		showNewCommentChange,

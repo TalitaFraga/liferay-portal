@@ -36,8 +36,6 @@ import UserRow from './UserRow.es';
 
 export default withRouter(
 	({
-		page,
-		pageSize,
 		answer,
 		answerChange,
 		canMarkAsAnswer,
@@ -45,6 +43,8 @@ export default withRouter(
 		editable = true,
 		match: {url},
 		onSubscription,
+		page,
+		pageSize,
 		question,
 	}) => {
 		const context = useContext(AppContext);
@@ -312,13 +312,13 @@ export default withRouter(
 				<div className="row">
 					<div className="col-md-9 offset-md-1">
 						<Comments
-							page={page}
-							pageSize={pageSize}
 							comments={comments}
 							commentsChange={_commentsChange}
 							editable={editable}
 							entityId={answer.id}
 							onSubscription={onSubscription}
+							page={page}
+							pageSize={pageSize}
 							question={question}
 							showNewComment={showNewComment}
 							showNewCommentChange={(value) =>
