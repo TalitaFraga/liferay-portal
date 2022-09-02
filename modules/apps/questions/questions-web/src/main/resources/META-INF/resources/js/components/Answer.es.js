@@ -201,8 +201,7 @@ export default withRouter(
 																			);
 																		}
 																	);
-																}
-																else {
+																} else {
 																	deleteAnswer(
 																		answer
 																	);
@@ -317,8 +316,6 @@ export default withRouter(
 							editable={editable}
 							entityId={answer.id}
 							onSubscription={onSubscription}
-							page={page}
-							pageSize={pageSize}
 							question={question}
 							showNewComment={showNewComment}
 							showNewCommentChange={(value) =>

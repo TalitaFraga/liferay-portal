@@ -35,8 +35,6 @@ export default withRouter(
 			params: {questionId, sectionTitle},
 		},
 		onSubscription,
-		page,
-		pageSize,
 		question,
 		showNewComment,
 		showNewCommentChange,
@@ -87,8 +85,8 @@ export default withRouter(
 
 			deleteCacheKey(getUserActivityQuery, {
 				filter: `creatorId eq ${context.userId}`,
-				page,
-				pageSize,
+				page: 1,
+				pageSize: 20,
 				siteKey: context.siteKey,
 			});
 		};

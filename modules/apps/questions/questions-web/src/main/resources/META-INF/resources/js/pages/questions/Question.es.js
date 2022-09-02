@@ -129,8 +129,7 @@ export default withRouter(
 							);
 							setError(errorObject);
 							setLoading(false);
-						}
-						else {
+						} else {
 							setQuestion(messageBoardThreadByFriendlyUrlPath);
 							setLoading(false);
 						}
@@ -223,12 +222,11 @@ export default withRouter(
 
 				deleteCacheKey(getUserActivityQuery, {
 					filter: `creatorId eq ${context.userId}`,
-					page,
-					pageSize,
+					page: 1,
+					pageSize: 20,
 					siteKey: context.siteKey,
 				});
-			}
-			catch (error) {}
+			} catch (error) {}
 		};
 
 		const deleteAnswer = useCallback(
@@ -555,8 +553,6 @@ export default withRouter(
 												editable={!question.locked}
 												key={answer.id}
 												onSubscription={onSubscription}
-												page={page}
-												pageSize={pageSize}
 												question={question}
 											/>
 										)}
