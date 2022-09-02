@@ -129,7 +129,8 @@ export default withRouter(
 							);
 							setError(errorObject);
 							setLoading(false);
-						} else {
+						}
+						else {
 							setQuestion(messageBoardThreadByFriendlyUrlPath);
 							setLoading(false);
 						}
@@ -226,7 +227,8 @@ export default withRouter(
 					pageSize: 20,
 					siteKey: context.siteKey,
 				});
-			} catch (error) {}
+			}
+			catch (error) {}
 		};
 
 		const deleteAnswer = useCallback(
