@@ -43,8 +43,6 @@ export default withRouter(
 		editable = true,
 		match: {url},
 		onSubscription,
-		page,
-		pageSize,
 		question,
 	}) => {
 		const context = useContext(AppContext);
