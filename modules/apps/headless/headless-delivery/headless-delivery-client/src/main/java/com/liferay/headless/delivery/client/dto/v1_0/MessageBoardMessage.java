@@ -122,27 +122,6 @@ public class MessageBoardMessage implements Cloneable, Serializable {
 
 	protected String articleBody;
 
-	public String getBadge() {
-		return badge;
-	}
-
-	public void setBadge(String badge) {
-		this.badge = badge;
-	}
-
-	public void setBadge(
-		UnsafeSupplier<String, Exception> badgeUnsafeSupplier) {
-
-		try {
-			badge = badgeUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	protected String badge;
-
 	public Creator getCreator() {
 		return creator;
 	}
@@ -290,6 +269,27 @@ public class MessageBoardMessage implements Cloneable, Serializable {
 	}
 
 	protected String externalReferenceCode;
+
+	public String getFeaturedDomain() {
+		return featuredDomain;
+	}
+
+	public void setFeaturedDomain(String featuredDomain) {
+		this.featuredDomain = featuredDomain;
+	}
+
+	public void setFeaturedDomain(
+		UnsafeSupplier<String, Exception> featuredDomainUnsafeSupplier) {
+
+		try {
+			featuredDomain = featuredDomainUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	protected String featuredDomain;
 
 	public String getFriendlyUrlPath() {
 		return friendlyUrlPath;

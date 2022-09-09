@@ -193,9 +193,9 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 		MessageBoardMessage messageBoardMessage = randomMessageBoardMessage();
 
 		messageBoardMessage.setArticleBody(regex);
-		messageBoardMessage.setBadge(regex);
 		messageBoardMessage.setEncodingFormat(regex);
 		messageBoardMessage.setExternalReferenceCode(regex);
+		messageBoardMessage.setFeaturedDomain(regex);
 		messageBoardMessage.setFriendlyUrlPath(regex);
 		messageBoardMessage.setHeadline(regex);
 		messageBoardMessage.setStatus(regex);
@@ -207,10 +207,10 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 		messageBoardMessage = MessageBoardMessageSerDes.toDTO(json);
 
 		Assert.assertEquals(regex, messageBoardMessage.getArticleBody());
-		Assert.assertEquals(regex, messageBoardMessage.getBadge());
 		Assert.assertEquals(regex, messageBoardMessage.getEncodingFormat());
 		Assert.assertEquals(
 			regex, messageBoardMessage.getExternalReferenceCode());
+		Assert.assertEquals(regex, messageBoardMessage.getFeaturedDomain());
 		Assert.assertEquals(regex, messageBoardMessage.getFriendlyUrlPath());
 		Assert.assertEquals(regex, messageBoardMessage.getHeadline());
 		Assert.assertEquals(regex, messageBoardMessage.getStatus());
@@ -2451,14 +2451,6 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("badge", additionalAssertFieldName)) {
-				if (messageBoardMessage.getBadge() == null) {
-					valid = false;
-				}
-
-				continue;
-			}
-
 			if (Objects.equals("creator", additionalAssertFieldName)) {
 				if (messageBoardMessage.getCreator() == null) {
 					valid = false;
@@ -2497,6 +2489,14 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 					"externalReferenceCode", additionalAssertFieldName)) {
 
 				if (messageBoardMessage.getExternalReferenceCode() == null) {
+					valid = false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("featuredDomain", additionalAssertFieldName)) {
+				if (messageBoardMessage.getFeaturedDomain() == null) {
 					valid = false;
 				}
 
@@ -2843,17 +2843,6 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("badge", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						messageBoardMessage1.getBadge(),
-						messageBoardMessage2.getBadge())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
 			if (Objects.equals("creator", additionalAssertFieldName)) {
 				if (!Objects.deepEquals(
 						messageBoardMessage1.getCreator(),
@@ -2928,6 +2917,17 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 				if (!Objects.deepEquals(
 						messageBoardMessage1.getExternalReferenceCode(),
 						messageBoardMessage2.getExternalReferenceCode())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("featuredDomain", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						messageBoardMessage1.getFeaturedDomain(),
+						messageBoardMessage2.getFeaturedDomain())) {
 
 					return false;
 				}
@@ -3320,14 +3320,6 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("badge")) {
-			sb.append("'");
-			sb.append(String.valueOf(messageBoardMessage.getBadge()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
 		if (entityFieldName.equals("creator")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
@@ -3423,6 +3415,14 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 			sb.append("'");
 			sb.append(
 				String.valueOf(messageBoardMessage.getExternalReferenceCode()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("featuredDomain")) {
+			sb.append("'");
+			sb.append(String.valueOf(messageBoardMessage.getFeaturedDomain()));
 			sb.append("'");
 
 			return sb.toString();
@@ -3565,12 +3565,13 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 				anonymous = RandomTestUtil.randomBoolean();
 				articleBody = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());
-				badge = StringUtil.toLowerCase(RandomTestUtil.randomString());
 				dateCreated = RandomTestUtil.nextDate();
 				dateModified = RandomTestUtil.nextDate();
 				encodingFormat = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());
 				externalReferenceCode = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				featuredDomain = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());
 				friendlyUrlPath = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());
