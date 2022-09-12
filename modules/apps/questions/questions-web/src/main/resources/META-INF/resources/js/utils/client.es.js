@@ -408,6 +408,7 @@ export const getMessagesQuery = `
 				dateCreated
 				dateModified
 				encodingFormat
+				featuredDomain
 				friendlyUrlPath
 				id
 				messageBoardMessages(flatten: true, sort: "dateCreated:asc") {
